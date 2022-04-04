@@ -1,5 +1,5 @@
 {
-  "name": "DjVu",
+  "name": "djvu",
   "version": "1.0.0",
   "description": "A way to connect with the past",
   "main": "index.js",
