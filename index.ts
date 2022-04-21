@@ -38,8 +38,20 @@ function prompt(message: string) {
 }
 
 (async () => {
+  const newVisitKey = push(child(ref(db), 'visits')).key;
+  const updates = {};
+  updates['/visits/' + newVisitKey] = {
+    date: new Date(),
+  };
+  update(ref(db), updates);
+
   // Get user name
-  const userName = (await prompt('Your name (anonymous): ')).trim() || 'anonymous';
+  const userName = (await prompt('Твоё имя (аноним): ')).trim() || 'аноним';
+  updates['/visits/' + newVisitKey] = {
+    date: new Date(),
+    userName
+  };
+  update(ref(db), updates);
 
   // Write new messages to console
   onChildAdded(chatsRef, snapshot => {
